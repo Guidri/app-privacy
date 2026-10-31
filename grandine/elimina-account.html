@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>GrandineAlert – Eliminare l'account</title>
+<link rel="stylesheet" href="../stile.css?v=1">
+</head>
+<body>
+<main>
+<h1>Eliminare l'account</h1>
+<p class="data">App Android “GrandineAlert” · sviluppatore: Guidri</p>
+
+<h2>Elimina qui, subito</h2>
+<p>Accedi con l'email e la password che usi nell'app: l'account e i dati collegati vengono cancellati immediatamente. Non serve scrivere a nessuno.</p>
+
+<form id="modulo" class="box" autocomplete="on">
+  <label for="email">Email</label>
+  <input id="email" type="email" autocomplete="username" required>
+  <label for="password">Password</label>
+  <input id="password" type="password" autocomplete="current-password" required>
+  <label class="spunta"><input id="conferma" type="checkbox" required> Ho capito che l'eliminazione è definitiva</label>
+  <button id="bottone" type="submit">Elimina il mio account</button>
+  <button id="recupera" type="button" class="link">Password dimenticata?</button>
+  <p id="esito" role="status" aria-live="polite"></p>
+</form>
+
+<h2>Oppure dall'app</h2>
+<p>Apri il <em>Profilo</em> nell'app e tocca <em>Elimina account</em>. Se non vedi ancora il pulsante aggiorna l'app, oppure usa il modulo qui sopra.</p>
+
+<h2>Cosa viene cancellato</h2>
+<ul><li>Account (email e password) e identificativo utente.</li><li>Profilo: nome, avatar, città, raggio di allerta, token delle notifiche e collegamento Telegram (il bot smette di scriverti).</li><li>Le tue segnalazioni di grandine.</li><li>I tuoi messaggi nella chat di gruppo.</li></ul>
+
+<h2>Cosa resta</h2>
+<ul><li>Le foto già caricate possono restare nell'archivio per qualche giorno prima della pulizia tecnica, senza più alcun collegamento al tuo account.</li><li>Non conserviamo copie dei dati cancellati.</li></ul>
+
+<p><a href="./">Informativa sulla privacy di GrandineAlert</a></p>
+<footer>GrandineAlert · Guidri</footer>
+</main>
+<script type="module">
+import { avvia, perOgni } from '../elimina.js';
+avvia({
+  // Configurazione web pubblica di Firebase (la stessa dell'app): i dati sono protetti dalle regole di sicurezza
+  firebase: {
+    "apiKey": "AIzaSyD9qwGCafUA6IVo0VRvpIbkjew54ygUNfQ",
+    "authDomain": "attrezzi-soffitta.firebaseapp.com",
+    "projectId": "attrezzi-soffitta",
+    "appId": "1:891979440320:web:7ec2192c7bdfe8212e0d25"
+},
+  pulizia: async (ctx) => {
+    const { db, uid, fs } = ctx;
+    await perOgni(ctx, 'hail_reports', 'reporterId', uid).catch(() => {});
+    await perOgni(ctx, 'group_messages', 'senderId', uid).catch(() => {});
+    await fs.deleteDoc(fs.doc(db, 'users', uid)).catch(() => {});
+  },
+});
+</script>
+</body>
+</html>

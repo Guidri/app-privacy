@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>La mia città accessibile – Eliminare l'account</title>
+<link rel="stylesheet" href="../stile.css?v=1">
+</head>
+<body>
+<main>
+<h1>Eliminare l'account</h1>
+<p class="data">App Android “La mia città accessibile” · sviluppatore: Guidri</p>
+
+<h2>Elimina qui, subito</h2>
+<p>Accedi con l'email e la password che usi nell'app: l'account e i dati collegati vengono cancellati immediatamente. Non serve scrivere a nessuno.</p>
+
+<form id="modulo" class="box" autocomplete="on">
+  <label for="email">Email</label>
+  <input id="email" type="email" autocomplete="username" required>
+  <label for="password">Password</label>
+  <input id="password" type="password" autocomplete="current-password" required>
+  <label class="spunta"><input id="conferma" type="checkbox" required> Ho capito che l'eliminazione è definitiva</label>
+  <button id="bottone" type="submit">Elimina il mio account</button>
+  <button id="recupera" type="button" class="link">Password dimenticata?</button>
+  <p id="esito" role="status" aria-live="polite"></p>
+</form>
+
+<h2>Oppure dall'app</h2>
+<p>Apri il profilo nell'app e tocca <em>Elimina account</em>.</p>
+
+<h2>Cosa viene cancellato</h2>
+<ul><li>Account (email e password) e identificativo utente.</li><li>Profilo: nome, punteggio e posizione in classifica.</li></ul>
+
+<h2>Cosa resta</h2>
+<ul><li>Le barriere che hai segnalato restano sulla mappa perché sono utili a tutti, ma il tuo nome viene tolto e sostituito con “Utente eliminato”.</li><li>Non conserviamo copie dei dati cancellati.</li></ul>
+
+<p><a href="https://gist.github.com/Guidri/ef426ae4feeb636b36e1912016a72cd9">Informativa sulla privacy di La mia città accessibile</a></p>
+<footer>La mia città accessibile · Guidri</footer>
+</main>
+<script type="module">
+import { avvia, perOgni } from '../elimina.js';
+avvia({
+  // Configurazione web pubblica di Firebase (la stessa dell'app): i dati sono protetti dalle regole di sicurezza
+  firebase: {
+    "apiKey": "AIzaSyD3iy-D_MvH4NMJT3pq6oG_-hU5SBsiD8w",
+    "authDomain": "la-mia-citta-accessibile.firebaseapp.com",
+    "projectId": "la-mia-citta-accessibile",
+    "appId": "1:826918431794:web:eac68805e3ffd1c487e02b"
+},
+  pulizia: async (ctx) => {
+    const { db, uid, fs } = ctx;
+    // Le barriere restano (utili a tutti) ma senza il nome di chi le ha segnalate
+    await perOgni(ctx, 'barriers', 'createdBy', uid, 'modifica', { createdByName: 'Utente eliminato' }).catch(() => {});
+    await fs.deleteDoc(fs.doc(db, 'users', uid)).catch(() => {});
+  },
+});
+</script>
+</body>
+</html>
