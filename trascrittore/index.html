@@ -13,7 +13,7 @@
 
 <div class="box">
 <p><strong>In breve.</strong> Le registrazioni, le trascrizioni e i riassunti restano sul tuo telefono. Per trasformare l'audio in testo
-e scrivere il riassunto, l'app invia l'audio ad AssemblyAI e il testo ad Anthropic (Claude), usando le chiavi che inserisci tu.
+e scrivere il riassunto, l'app invia l'audio ad AssemblyAI e il testo ad Anthropic (Claude), usando le chiavi che inserisci tu. Se lo attivi, copia trascrizioni e riassunti sul tuo connettore personale (Cloudflare) perché Claude li possa leggere.
 Non ci sono account, server dello sviluppatore, pubblicità né strumenti di analisi.</p>
 </div>
 
@@ -27,7 +27,8 @@ Non ci sono account, server dello sviluppatore, pubblicità né strumenti di ana
 <tr><td>Registrazioni delle chiamate</td><td>Solo dalla cartella che scegli tu (es. Recordings/Call del registratore Samsung)</td><td>Copiate nella memoria dell'app; inviate ad AssemblyAI per la trascrizione</td></tr>
 <tr><td>File audio importati</td><td>Solo quelli che scegli</td><td>Come sopra</td></tr>
 <tr><td>Trascrizione</td><td>Dopo la trascrizione</td><td>Salvata sul telefono; inviata ad Anthropic (Claude) per il riassunto e per le domande che fai</td></tr>
-<tr><td>Chiavi AssemblyAI e Claude</td><td>Quando le inserisci</td><td>Solo sul telefono, cifrate (Android Keystore)</td></tr>
+<tr><td>Trascrizione e riassunto (facoltativo)</td><td>Solo se in Impostazioni inserisci l'indirizzo del tuo connettore</td><td>Inviati al tuo spazio personale su Cloudflare, così Claude li può leggere su tua richiesta</td></tr>
+<tr><td>Chiavi AssemblyAI e Claude, indirizzo del connettore</td><td>Quando le inserisci</td><td>Solo sul telefono, cifrate (Android Keystore)</td></tr>
 </table></div>
 <p>L'app non legge la rubrica, la posizione, le foto o il registro chiamate e non registra le chiamate da sé: usa solo i file
 già creati dal registratore del telefono nella cartella che indichi.</p>
@@ -36,15 +37,16 @@ già creati dal registratore del telefono nella cartella che indichi.</p>
 <ul>
 <li><strong>AssemblyAI, Inc.</strong> (USA): riceve l'audio e restituisce il testo. Condizioni e privacy: <a href="https://www.assemblyai.com/legal/privacy-policy">assemblyai.com/legal/privacy-policy</a>.</li>
 <li><strong>Anthropic PBC</strong> (USA): riceve il testo della trascrizione e restituisce riassunti e risposte. Privacy: <a href="https://www.anthropic.com/legal/privacy">anthropic.com/legal/privacy</a>.</li>
+<li><strong>Cloudflare, Inc.</strong> (USA), facoltativo: ospita il connettore personale che crei tu sul tuo account Cloudflare, con le trascrizioni e i riassunti, protetti da una chiave segreta. Privacy: <a href="https://www.cloudflare.com/privacypolicy/">cloudflare.com/privacypolicy</a>.</li>
 </ul>
-<p>I due servizi agiscono per conto dell'account di chi ha creato le chiavi. Le trasmissioni avvengono con connessione cifrata (HTTPS). I dati non vengono venduti né ceduti ad altri.</p>
+<p>I servizi agiscono per conto dell'account di chi ha creato le chiavi. Le trasmissioni avvengono con connessione cifrata (HTTPS). I dati non vengono venduti né ceduti ad altri.</p>
 
 <h2>Base giuridica</h2>
 <p>Esecuzione del servizio che richiedi (art. 6.1.b GDPR). Se registri altre persone, sei tu responsabile di farlo nel rispetto della legge:
 in Italia registrare una conversazione a cui partecipi è in genere lecito, diffonderla senza consenso no.</p>
 
 <h2>Per quanto tempo</h2>
-<p>Sul telefono finché non elimini la registrazione o disinstalli l'app. Presso AssemblyAI e Anthropic secondo le loro regole di conservazione.</p>
+<p>Sul telefono finché non elimini la registrazione o disinstalli l'app. Presso AssemblyAI e Anthropic secondo le loro regole di conservazione. Nel connettore finché non elimini la registrazione dall'app (viene tolta anche lì) o cancelli il connettore dal tuo account Cloudflare.</p>
 
 <h2>Cancellare i dati</h2>
 <ul>
@@ -61,7 +63,7 @@ o presentare reclamo al Garante per la protezione dei dati personali (<a href="h
 
 <h2>English summary</h2>
 <p>Recordings, transcripts and summaries stay on your phone. Audio is sent to AssemblyAI for transcription and text to Anthropic (Claude) for summaries,
-using API keys you enter, stored encrypted on the device. No accounts, no developer server, no ads, no analytics. Delete a recording in the app or uninstall to remove everything. Contact: homeboy.sp@gmail.com.</p>
+using API keys you enter, stored encrypted on the device. Optionally, transcripts are copied to your own Cloudflare connector so Claude can read them. No accounts, no developer server, no ads, no analytics. Delete a recording in the app or uninstall to remove everything. Contact: homeboy.sp@gmail.com.</p>
 
 <footer>Trascrittore · Guidri</footer>
 </main>
